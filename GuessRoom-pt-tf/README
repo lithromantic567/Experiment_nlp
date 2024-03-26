@@ -1,0 +1,19 @@
+训练集扩大到5000
+增加了网络层数
+object的编码从one-hot改成[shape,color,up/down,left/right]
+    obs_feat_in_num = 4
+    obs_feat_out_num = 10
+    gate_feat_in_num = 2
+    gate_feat_out_num = 10
+max_gate_num = 4
+batch=50
+
+数据集处理出现了问题：门没有对应完全，重新处理数据
+Env.py and Dataset.py中增加门的color属性
+Dataset中把A的观测空间改成部分可观测3*3的大小
+classRoomGrid中agent_view_size: int = 3
+
+把编码改成每个格子的编码，每格用三维向量(shape,color,state)表示
+把encoder中的全连接网络改成卷积网络
+GuessRoomTrainNew.py能观察到整个房间
+GuessRoomTrain.py只能观察到视角中3*3的房间信息
